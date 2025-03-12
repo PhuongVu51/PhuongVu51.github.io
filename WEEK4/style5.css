@@ -15,10 +15,12 @@ article >p{
 
 nav{
     background: rgb(64,58, 32);
+    text-align: center;
 }
 
 nav ul li{
     display: inline;
+    padding: 10px;
 }
 
 nav ul li a {
