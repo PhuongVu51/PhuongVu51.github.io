@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Multiplication Table</title>
+    <script>
+        function display() {
+            var a = document.f.a;
+            var txt = document.getElementById("view_area").contentWindow;
+
+            // Xóa nội dung cũ trong iframe
+            txt.document.body.innerHTML = "";
+
+            // Kiểm tra giá trị nhập vào
+            if (a.value === "" || isNaN(a.value)) {
+                txt.document.write("<font color='red'>You must enter a number</font>");
+            } else {
+                txt.document.write("<b>Multiplication table " + a.value + ":</b><br/>");
+                for (var i = 1; i <= 10; i++) {
+                    txt.document.write(a.value + " x " + i + " = " + (a.value * i) + "<br/>");
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <form name="f">
+        <table border="0" align="center">
+            <tr>
+                <td colspan="2" align="center">
+                    <h2>MULTIPLICATION TABLE</h2>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    Which multiplication table that you want to display?
+                </td>
+                <td>
+                    <input name="a" size="5" onchange="display()" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <iframe id="view_area" width="230" height="250"></iframe>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
+Chi
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Mini Calculator</title>
+    <script>
+        function calculate() {
+            var a = document.frmCal.txta;
+            var b = document.frmCal.txtb;
+            var op = document.frmCal.slfo;
+            var r = document.frmCal.txtr;
+
+            var numberFormat = /^[+-]?\d+(\.\d+)?$/;
+
+            // Kiểm tra giá trị nhập vào có phải là số hợp lệ không
+            if (!numberFormat.test(a.value)) {
+                alert("a must be a number!");
+                a.focus();
+                return;
+            }
+            if (!numberFormat.test(b.value)) {
+                alert("b must be a number!");
+                b.focus();
+                return;
+            }
+
+            var numA = parseFloat(a.value);
+            var numB = parseFloat(b.value);
+
+            // Tránh chia cho 0
+            if (op.value === "/" && numB === 0) {
+                alert("b can't be 0!");
+                b.focus();
+                return;
+            }
+
+            // Thực hiện phép tính
+            var result;
+            switch (op.value) {
+                case "+": result = numA + numB; break;
+                case "-": result = numA - numB; break;
+                case "*": result = numA * numB; break;
+                case "/": result = numA / numB; break;
+                default: result = "Invalid Operator";
+            }
+
+            // Hiển thị kết quả
+            r.value = result;
+        }
+    </script>
+</head>
+<body>
+    <form name="frmCal">
+        <h2>MINI CALCULATOR</h2>
+        a = <input type="text" name="txta"><br><br>
+        b = <input type="text" name="txtb"><br><br>
+        Operator: 
+        <select name="slfo">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select><br><br>
+        Result: <input type="text" name="txtr" readonly><br><br>
+        <input type="button" value="Calculate" onclick="calculate()">
+    </form>
+</body>
+</html>
